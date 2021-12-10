@@ -1,11 +1,23 @@
 {% extends 'myweb_main/defolt.html'%}
 
 {% block title %}
-About us
+{{ title }}
 {% endblock %}
 {% block content %}
-    <h1>Вся инфа про этот сайт</h1>
-    <p> 1.
-        2.
-        3.</p>
+    <h1>Ваши публикации</h1>
+    {% if posts %}
+        {% for el in posts %}
+            <div class="alert alert-warning mt-2">
+                <h3> {{ el.title }}</h3>
+                <p> {{ el.text }}</p>
+                {% if el.image %}
+                     <p><img src="{{ el.image.url }}" width="600" height="500" ></p>
+                {% else %}
+                     <p></p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+         <p> Пока записей нет) </p>
+    {% endif %}
 {% endblock %}

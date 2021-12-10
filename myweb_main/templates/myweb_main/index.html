@@ -1,9 +1,10 @@
 {% extends 'myweb_main/defolt.html'%}
+{% load static %}
 
 {% block title %}
-About us
+Главная
 {% endblock %}
 {% block content %}
-    <h1>Наш текст тут)</h1>
-    <div>просто текст</div>
+   <h1>Главная страница</h1>
+   <link rel="stylesheet" href="{% static 'myweb_main/css/myweb_main.css' %}">
 {% endblock %}

@@ -1,10 +1,23 @@
 body {
-    background: #2c2c2c;
+    background: #f9f5f5;
 }
 
 
 nav {
-
     color: #fff;
+    background: #2d4463;
+    width: 20%;
+    padding: 2.5%;
+    height: 10vh;
+    border: 5px solid #4d4d4d;
+}
 
+
+div h1{
+    color: #000;
+    text-align: center;
+}
+
+div {
+    color: #000;
 }

@@ -1,5 +1,7 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from myweb_main.forms.post import PostForm
+from myweb_main.forms.auth import AuthForm
 from myweb_main.forms.reg import RegistrationForm
 from .models import Post
 
@@ -42,3 +44,21 @@ def reg_page(request):
         "error": error
     }
     return render(request, 'myweb_main/reg.html', context)
+
+def auth(request):
+    error = False
+    if request.method == "POST":
+        form = AuthForm(request.POST)
+        if form.is_valid():
+            user = authenticate(request, **form.cleaned_data)
+            if user is not None:
+                login(request,user)
+                next_page = request.GET.get('next', 'home')
+                return redirect(next_page)
+            error = True
+    else:
+        form = AuthForm()
+    context = {"form": form, "error": error}
+    return render(request, 'myweb_main/auth.html', context)
+
+

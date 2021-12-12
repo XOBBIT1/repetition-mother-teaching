@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myweb_main'
+    'myweb_main',
+    'menu_up'
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
     },
 ]
@@ -121,7 +123,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 

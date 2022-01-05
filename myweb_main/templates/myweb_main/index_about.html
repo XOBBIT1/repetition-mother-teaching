@@ -5,9 +5,6 @@
 {% endblock %}
 {% block content %}
 {% load menu_tags %}
-<div id="user">
-    <a class="py-2 d-none d-md-inline-block" href="{% url 'about' %}" style="text-decoration: none">{% profile %}</a>
-</div>
     <h1>Ваши публикации</h1>
     {% if posts %}
         {% for el in posts %}

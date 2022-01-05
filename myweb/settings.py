@@ -38,7 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myweb_main',
-    'menu_up'
+    'menu_up',
+    'rest_framework',
+    'drf_spectacular',
+    'media_app',
+    'tags_app',
+    'like_app',
+    'comment_app',
+    'like_comment_app',
+    'like_tag_app',
+    'followers_app'
 ]
 
 MIDDLEWARE = [
@@ -134,3 +143,17 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": 'drf_spectacular.openapi.AutoSchema'
+}
+
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "TeachMeGram API",
+    "VERSION": "0.0.1",
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SWAGGER_UI_SETTINGS": {"deepLinking": True, "persistAuthorization": True, "displayOperationId": True, },
+}

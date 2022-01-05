@@ -1,12 +1,42 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
+
 from myweb_main.forms.post import PostForm
 from myweb_main.forms.auth import AuthForm
 from myweb_main.forms.reg import RegistrationForm
 from .models import Post
 
+
 def index(request):
-    return render(request, "myweb_main/index.html")
+    q_filter = Q(is_user=False)
+    posts = Post.objects.filter(is_public=False).order_by("id").all()
+    context = {
+        "post": posts
+    }
+    return render(request, "myweb_main/index.html", context)
+
+
+class PostListView(ListView):
+    queryset = Post.objects.all()
+    template_name = 'myweb_main/index_about.html'
+    context_object_name = 'account'
+    ordering = ('id')
+    http_method_names = ['post',]
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return self.queryset.all()
+        return self.queryset.filter(is_public=True).all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['title'] = "Супер Посты"
+        context['user'] = self.request.user
+        return context
+
 
 def post_page(request):
     error = ''
@@ -62,3 +92,6 @@ def auth(request):
     return render(request, 'myweb_main/auth.html', context)
 
 
+def logout_page(request):
+    logout(request)
+    return redirect('auth')

@@ -24,17 +24,17 @@ def login_menu(context):
     if context.request.user.is_authenticated:
         menu = [
         {
-            'url': "/home/",
+            'url': "logout",
             'title': "Выйти",
         }]
         return {'menu': menu}
     else:
         menu = [{
-            'url': "/reg/",
+            'url': "reg",
             'title': 'Регистрация /',
         },
             {
-                'url': "/auth/",
+                'url': "auth",
                 'title':"Войти",
             }
         ]
@@ -50,7 +50,12 @@ def about(context):
             'title': "Ваши публикации",
         }]
         return {'about': menu}
-
+    else:
+        menu = [{
+            'url': "account",
+            'title': 'Ваши публикации ',
+        }]
+        return {'about': menu}
 
 @register.inclusion_tag("menu.html", takes_context=True)
 def post(context):

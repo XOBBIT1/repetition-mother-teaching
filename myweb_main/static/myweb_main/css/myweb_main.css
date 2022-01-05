@@ -1,5 +1,5 @@
 body {
-    background:#edeef0;
+    background:#fff;
 }
 
 
@@ -103,4 +103,29 @@ div ul img{
     width: 400px;
     margin: 10px;
     margin-left: 120px;
+}
+
+p {
+    float: left;
+    color: #434342;
+    text-align: center;
+    width: 75%;
+    margin-top: 10px;
+    margin-left: 130px;
+}
+
+prof{
+    float: left;
+    color: #434342;
+    text-align: center;
+    width: 75%;
+    margin-left: 130px;
+}
+
+
+
+
+main img {
+     margin-left: 120px;
+     width: 75%;
 }
